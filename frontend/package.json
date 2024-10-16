@@ -4,9 +4,9 @@
   "main": "notes.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.ts",
+    "start": "node dist/index.js",
     "build": "npx tsc",
-    "dev": "nodemon src/server.ts "
+    "dev": "nodemon dist/index.js "
   },
   "keywords": [],
   "author": "",
@@ -27,7 +27,6 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "express-validator": "^7.2.0",
-    "ts-node": "^10.9.2",
-    "watch": "^1.0.2"
+    "ts-node": "^10.9.2"
   }
 }
