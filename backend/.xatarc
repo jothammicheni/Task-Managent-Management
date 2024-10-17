@@ -1,4 +1,5 @@
 {
+
   "databaseURL": "https://James-Wambua-s-workspace-nm4hu5.us-east-1.xata.sh/db/Task_Management_Db",
   "codegen": {
     "output": "src/xata.ts"

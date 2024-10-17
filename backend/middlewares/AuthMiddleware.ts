@@ -24,7 +24,9 @@ const protect =async (req: CustomRequest,res: Response, next: NextFunction): Pro
        
         req.user = decoded; // Attach user info to request
         const email=req.user.id
+
         const existingUser = await client.db.Users.filter({ email }).getFirst();
+
         console.log("",existingUser)
         if(existingUser!==null){
            if(existingUser.role==='admin'){
@@ -52,6 +54,7 @@ const adminOnly = async (req: CustomRequest, res: Response, next: NextFunction):
         req.user = decoded; // Attach user info to request
         const email=req.user.id
         const existingUser = await client.db.Users.filter({ email }).getFirst();
+
       
         if(existingUser!==null){
             console.log(existingUser.role);

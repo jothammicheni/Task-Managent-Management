@@ -39,6 +39,7 @@ const registerUser = async (req: Request<{}, {}, UserRecord>, res: Response): Pr
 
         const newUser = await client.db.Users.create({
             userID: userId,
+
             email,
             password: hashedPassword,
             name,
@@ -58,7 +59,9 @@ const loginUser = async (req: Request<{}, {}, { email: string, password: string 
     const { email, password } = req.body;
 
     try {
+
         const user = await client.db.Users.filter({ email }).getFirst();
+
         
         if (!user) {
             return sendResponse(res, 404, 'User not found');
@@ -79,10 +82,12 @@ const loginUser = async (req: Request<{}, {}, { email: string, password: string 
                     secure: false // Set to true in production
                 });
 
+
                 const { userID, name, email, role } = user;
                 res.status(200).json({
                     message: "Logged in",
                     user: { userID, name, email, role },
+
                     token
                 });
             } else {
@@ -97,9 +102,11 @@ const loginUser = async (req: Request<{}, {}, { email: string, password: string 
     }
 };
 
+
 const deleteUser = async (req: Request<{ userID: string }>, res: Response): Promise<void> => {
     // Parse userId as a number
     const userId = parseInt(req.params.userID, 10);
+
 
     if (isNaN(userId)) {
         sendResponse(res, 400, 'Invalid user ID');
@@ -107,10 +114,12 @@ const deleteUser = async (req: Request<{ userID: string }>, res: Response): Prom
     }
 
     try {
+
         const user = await client.db.Users.filter({ userID: userId }).getFirst();
 
         if (user) {
             await client.db.Users.delete(user); // Delete by user ID
+
             sendResponse(res, 200, 'User deleted successfully');
         } else {
             sendResponse(res, 404, 'User not found');
@@ -125,7 +134,9 @@ const deleteUser = async (req: Request<{ userID: string }>, res: Response): Prom
 // Function to get all users
 const getAllUsers = async (req: Request, res: Response): Promise<void> => {
     try {
+
         const users = await client.db.Users.getAll(); // Fetch all users
+
         res.status(200).json(users); // Return the list of users
     } catch (error) {
         console.error('Error fetching users:', error);
