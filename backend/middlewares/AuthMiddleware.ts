@@ -24,7 +24,7 @@ const protect =async (req: CustomRequest,res: Response, next: NextFunction): Pro
        
         req.user = decoded; // Attach user info to request
         const email=req.user.id
-        const existingUser = await client.db.users.filter({ email }).getFirst();
+        const existingUser = await client.db.Users.filter({ email }).getFirst();
         console.log("",existingUser)
         if(existingUser!==null){
            if(existingUser.role==='admin'){
@@ -51,7 +51,7 @@ const adminOnly = async (req: CustomRequest, res: Response, next: NextFunction):
         const decoded = jwt.verify(token, process.env.JWT_TOKEN || 'your_secret');
         req.user = decoded; // Attach user info to request
         const email=req.user.id
-        const existingUser = await client.db.users.filter({ email }).getFirst();
+        const existingUser = await client.db.Users.filter({ email }).getFirst();
       
         if(existingUser!==null){
             console.log(existingUser.role);

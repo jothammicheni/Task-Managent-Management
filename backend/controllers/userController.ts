@@ -21,7 +21,7 @@ const registerUser = async (req: Request<{}, {}, UserRecord>, res: Response): Pr
     let { email, password, name, role } = req.body; // Use let to allow reassignment
 
     try {
-        const existingUser = await client.db.users.filter({ email }).getFirst();
+        const existingUser = await client.db.Users.filter({ email }).getFirst();
 
         if (existingUser) {
             return sendResponse(res, 400, 'Email already in use');
@@ -37,8 +37,8 @@ const registerUser = async (req: Request<{}, {}, UserRecord>, res: Response): Pr
 
         console.log({ userId, email, password: hashedPassword, name, role }); // Log user data
 
-        const newUser = await client.db.users.create({
-            userId,
+        const newUser = await client.db.Users.create({
+            userID: userId,
             email,
             password: hashedPassword,
             name,
@@ -58,7 +58,7 @@ const loginUser = async (req: Request<{}, {}, { email: string, password: string 
     const { email, password } = req.body;
 
     try {
-        const user = await client.db.users.filter({ email }).getFirst();
+        const user = await client.db.Users.filter({ email }).getFirst();
         
         if (!user) {
             return sendResponse(res, 404, 'User not found');
@@ -79,10 +79,10 @@ const loginUser = async (req: Request<{}, {}, { email: string, password: string 
                     secure: false // Set to true in production
                 });
 
-                const { userId, name, email, role } = user;
+                const { userID, name, email, role } = user;
                 res.status(200).json({
                     message: "Logged in",
-                    user: { userId, name, email, role },
+                    user: { userID, name, email, role },
                     token
                 });
             } else {
@@ -97,9 +97,9 @@ const loginUser = async (req: Request<{}, {}, { email: string, password: string 
     }
 };
 
-const deleteUser = async (req: Request<{ userId: string }>, res: Response): Promise<void> => {
+const deleteUser = async (req: Request<{ userID: string }>, res: Response): Promise<void> => {
     // Parse userId as a number
-    const userId = parseInt(req.params.userId, 10);
+    const userId = parseInt(req.params.userID, 10);
 
     if (isNaN(userId)) {
         sendResponse(res, 400, 'Invalid user ID');
@@ -107,10 +107,10 @@ const deleteUser = async (req: Request<{ userId: string }>, res: Response): Prom
     }
 
     try {
-        const user = await client.db.users.filter({ userId }).getFirst();
+        const user = await client.db.Users.filter({ userID: userId }).getFirst();
 
         if (user) {
-            await client.db.users.delete(user); // Delete by user ID
+            await client.db.Users.delete(user); // Delete by user ID
             sendResponse(res, 200, 'User deleted successfully');
         } else {
             sendResponse(res, 404, 'User not found');
@@ -125,7 +125,7 @@ const deleteUser = async (req: Request<{ userId: string }>, res: Response): Prom
 // Function to get all users
 const getAllUsers = async (req: Request, res: Response): Promise<void> => {
     try {
-        const users = await client.db.users.getAll(); // Fetch all users
+        const users = await client.db.Users.getAll(); // Fetch all users
         res.status(200).json(users); // Return the list of users
     } catch (error) {
         console.error('Error fetching users:', error);
