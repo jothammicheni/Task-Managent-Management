@@ -11,7 +11,7 @@ app.use(express.json()); // For parsing application/json
 app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
 app.use(cookieParser());
 
-// Use the user routes with a specific prefix
+// Use the user routes with a specific prefix//
 app.use('/api/users', userRoutes);
 
 const PORT = process.env.PORT || 3005;
