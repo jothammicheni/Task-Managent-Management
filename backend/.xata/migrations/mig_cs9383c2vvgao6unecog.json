@@ -1,0 +1,27 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cs9383c2vvgao6unecog",
+    "operations": [
+      {
+        "add_column": {
+          "up": "''",
+          "table": "Teams",
+          "column": {
+            "pk": false,
+            "name": "description",
+            "type": "text",
+            "unique": false,
+            "comment": "",
+            "nullable": false
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cs9383c2vvgao6unecog",
+  "parent": "mig_cs937nkjvfnl258s5t00",
+  "schema": "public",
+  "startedAt": "2024-10-18T10:10:21.827697Z"
+}

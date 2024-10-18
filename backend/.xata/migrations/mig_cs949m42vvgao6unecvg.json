@@ -1,0 +1,27 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cs949m42vvgao6unecvg",
+    "operations": [
+      {
+        "add_column": {
+          "up": "''",
+          "table": "Project",
+          "column": {
+            "pk": false,
+            "name": "name",
+            "type": "text",
+            "unique": false,
+            "comment": "",
+            "nullable": false
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cs949m42vvgao6unecvg",
+  "parent": "mig_cs949fkjvfnl258s5t80",
+  "schema": "public",
+  "startedAt": "2024-10-18T11:22:00.482805Z"
+}
