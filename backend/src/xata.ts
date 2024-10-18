@@ -126,12 +126,24 @@ const tables = [
     foreignKeys: {},
     primaryKey: [],
     uniqueConstraints: {
+      Tasks__pgroll_new_taskID_key: {
+        name: "Tasks__pgroll_new_taskID_key",
+        columns: ["taskID"],
+      },
       _pgroll_new_Tasks_xata_id_key: {
         name: "_pgroll_new_Tasks_xata_id_key",
         columns: ["xata_id"],
       },
     },
     columns: [
+      {
+        name: "taskID",
+        type: "int",
+        notNull: true,
+        unique: true,
+        defaultValue: null,
+        comment: "",
+      },
       {
         name: "xata_createdat",
         type: "datetime",
