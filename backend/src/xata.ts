@@ -188,6 +188,7 @@ const tables = [
       },
     },
     foreignKeys: {},
+
     primaryKey: [],
     uniqueConstraints: {
       _pgroll_new_Teams_xata_id_key: {
