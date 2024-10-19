@@ -4,6 +4,10 @@ import userRoutes from '../routes/userRoutes'; // Adjust the path to where your 
 import cookieParser from 'cookie-parser'; // Import cookie-parser
 
 
+
+export { app };  // Add this line to export 'app'
+
+
 dotenv.config();
 
 const app: Express = express();
