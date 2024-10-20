@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">[]
+        <div class="sidebar">
+            <h2>TASK MANAGEMENT</h2>
+            <ul>
+                <li><a href="Dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="create-team.html">CREATE TEAM</a></li>
+                <li><a href="#">JOIN TEAM</a></li>
+                <li><a href="#">MANAGE TASKS</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <div class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </div>
+                <button id="logout" class="logout-btn">LOGOUT</button>
+            </div>
+            <div id="content">
+                <h3>Welcome to the Task Management Dashboard</h3>
+
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <h4>Total Teams</h4>
+                        <p>5</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Total Projects</h4>
+                        <p>12</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Pending Tasks</h4>
+                        <p>8</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Completed Tasks</h4>
+                        <p>15</p>
+                    </div>
+                </div>
+
+                <div class="search-filter-container">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search projects or tasks..." />
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+
+                    <div class="filters">
+                        <select name="status-filter">
+                            <option value="">Filter by status</option>
+                            <option value="pending">Pending</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                        <select name="priority-filter">
+                            <option value="">Filter by priority</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="nav-tabs">
+                    <button class="nav-btn active" data-tab="pending-projects">Pending Projects</button>
+                    <button class="nav-btn" data-tab="completed-tasks">Completed Tasks</button>
+                    <button class="nav-btn" data-tab="all-projects">All Projects</button>
+                </div>
+
+                <div id="project-cards-container">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h4>Project Title 1</h4>
+                            <span class="deadline">Due: 2024-10-30</span>
+                        </div>
+                        <p class="description">This is a description of the project. It includes the key details and
+                            goals for the team to accomplish.</p>
+
+                        <div class="toggle-container">
+                            <label class="switch">
+                                <input type="checkbox" id="toggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span id="status-label">In Progress</span>
+                        </div>                        
+
+                        <div class="action-buttons">
+                            <button class="view-btn">View</button>
+                            <button class="complete-btn" id="complete-btn-1">Mark as Complete</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h4>Project Title 2</h4>
+                            <span class="deadline">Due: 2024-11-15</span>
+                        </div>
+                        <p class="description">This is a description of the project. It involves creating a
+                            collaborative platform for team tasks and projects.</p>
+
+                        <div class="toggle-container">
+                            <label class="switch">
+                                <input type="checkbox" id="toggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span id="status-label">In Progress</span>
+                        </div> 
+
+                        <div class="action-buttons">
+                            <button class="view-btn">View</button>
+                            <button class="complete-btn" id="complete-btn-2">Mark as Complete</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h4>Project Title 2</h4>
+                            <span class="deadline">Due: 2024-11-15</span>
+                        </div>
+                        <p class="description">This is a description of the project. It involves creating a
+                            collaborative platform for team tasks and projects.</p>
+
+                        <div class="toggle-container">
+                            <label class="switch">
+                                <input type="checkbox" id="toggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span id="status-label">In Progress</span>
+                        </div> 
+
+                        <div class="action-buttons">
+                            <button class="view-btn">View</button>
+                            <button class="complete-btn" id="complete-btn-2">Mark as Complete</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h4>Project Title 2</h4>
+                            <span class="deadline">Due: 2024-11-15</span>
+                        </div>
+                        <p class="description">This is a description of the project. It involves creating a
+                            collaborative platform for team tasks and projects.</p>
+
+                        <div class="toggle-container">
+                            <label class="switch">
+                                <input type="checkbox" id="toggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span id="status-label">In Progress</span>
+                        </div> 
+
+                        <div class="action-buttons">
+                            <button class="view-btn">View</button>
+                            <button class="complete-btn" id="complete-btn-2">Mark as Complete</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script src="./js/app.js"></script>
+</body>
+
+</html>
