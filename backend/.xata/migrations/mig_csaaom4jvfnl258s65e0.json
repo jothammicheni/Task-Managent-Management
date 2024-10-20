@@ -1,0 +1,27 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_csaaom4jvfnl258s65e0",
+    "operations": [
+      {
+        "add_column": {
+          "up": "''",
+          "table": "Tasks",
+          "column": {
+            "pk": false,
+            "name": "status",
+            "type": "text",
+            "unique": false,
+            "comment": "",
+            "nullable": false
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_csaaom4jvfnl258s65e0",
+  "parent": "mig_csaaofk2vvgao6unelvg",
+  "schema": "public",
+  "startedAt": "2024-10-20T07:08:09.035889Z"
+}

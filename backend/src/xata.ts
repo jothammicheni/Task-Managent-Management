@@ -16,15 +16,68 @@ const tables = [
         definition: "CHECK ((length(xata_id) < 256))",
       },
     },
-    foreignKeys: {},
+    foreignKeys: {
+      taskID_link: {
+        name: "taskID_link",
+        columns: ["taskID"],
+        referencedTable: "Tasks",
+        referencedColumns: ["xata_id"],
+        onDelete: "SET NULL",
+      },
+      userID_link: {
+        name: "userID_link",
+        columns: ["userID"],
+        referencedTable: "Users",
+        referencedColumns: ["xata_id"],
+        onDelete: "CASCADE",
+      },
+    },
     primaryKey: [],
     uniqueConstraints: {
+      Comments__pgroll_new_commentID_key: {
+        name: "Comments__pgroll_new_commentID_key",
+        columns: ["commentID"],
+      },
       _pgroll_new_Comments_xata_id_key: {
         name: "_pgroll_new_Comments_xata_id_key",
         columns: ["xata_id"],
       },
     },
     columns: [
+      {
+        name: "commentID",
+        type: "int",
+        notNull: true,
+        unique: true,
+        defaultValue: null,
+        comment: "",
+      },
+      {
+        name: "content",
+        type: "text",
+        notNull: true,
+        unique: false,
+        defaultValue: null,
+        comment: "",
+      },
+      {
+        name: "taskID",
+        type: "link",
+        link: { table: "Tasks" },
+        notNull: true,
+        unique: false,
+        defaultValue: null,
+        comment: '{"xata.link":"Tasks"}',
+      },
+      {
+        name: "userID",
+        type: "link",
+        link: { table: "Users" },
+        notNull: true,
+        unique: false,
+        defaultValue: null,
+        comment: '{"xata.link":"Users"}',
+      },
       {
         name: "xata_createdat",
         type: "datetime",
@@ -157,7 +210,22 @@ const tables = [
         definition: "CHECK ((length(xata_id) < 256))",
       },
     },
-    foreignKeys: {},
+    foreignKeys: {
+      assignedToID_link: {
+        name: "assignedToID_link",
+        columns: ["assignedToID"],
+        referencedTable: "Users",
+        referencedColumns: ["xata_id"],
+        onDelete: "CASCADE",
+      },
+      projectId_link: {
+        name: "projectId_link",
+        columns: ["projectId"],
+        referencedTable: "Project",
+        referencedColumns: ["xata_id"],
+        onDelete: "SET NULL",
+      },
+    },
     primaryKey: [],
     uniqueConstraints: {
       Tasks__pgroll_new_taskID_key: {
@@ -171,12 +239,139 @@ const tables = [
     },
     columns: [
       {
+        name: "assignedToID",
+        type: "link",
+        link: { table: "Users" },
+        notNull: true,
+        unique: false,
+        defaultValue: null,
+        comment: '{"xata.link":"Users"}',
+      },
+      {
+        name: "description",
+        type: "text",
+        notNull: true,
+        unique: false,
+        defaultValue: null,
+        comment: "",
+      },
+      {
+        name: "dueDate",
+        type: "text",
+        notNull: true,
+        unique: false,
+        defaultValue: null,
+        comment: "",
+      },
+      {
+        name: "projectId",
+        type: "link",
+        link: { table: "Project" },
+        notNull: true,
+        unique: false,
+        defaultValue: null,
+        comment: '{"xata.link":"Project"}',
+      },
+      {
+        name: "status",
+        type: "text",
+        notNull: true,
+        unique: false,
+        defaultValue: null,
+        comment: "",
+      },
+      {
         name: "taskID",
         type: "int",
         notNull: true,
         unique: true,
         defaultValue: null,
         comment: "",
+      },
+      {
+        name: "xata_createdat",
+        type: "datetime",
+        notNull: true,
+        unique: false,
+        defaultValue: "now()",
+        comment: "",
+      },
+      {
+        name: "xata_id",
+        type: "text",
+        notNull: true,
+        unique: true,
+        defaultValue: "('rec_'::text || (xata_private.xid())::text)",
+        comment: "",
+      },
+      {
+        name: "xata_updatedat",
+        type: "datetime",
+        notNull: true,
+        unique: false,
+        defaultValue: "now()",
+        comment: "",
+      },
+      {
+        name: "xata_version",
+        type: "int",
+        notNull: true,
+        unique: false,
+        defaultValue: "0",
+        comment: "",
+      },
+    ],
+  },
+  {
+    name: "TeamMembers",
+    checkConstraints: {
+      TeamMembers_xata_id_length_xata_id: {
+        name: "TeamMembers_xata_id_length_xata_id",
+        columns: ["xata_id"],
+        definition: "CHECK ((length(xata_id) < 256))",
+      },
+    },
+    foreignKeys: {
+      teamId_link: {
+        name: "teamId_link",
+        columns: ["teamId"],
+        referencedTable: "Teams",
+        referencedColumns: ["xata_id"],
+        onDelete: "CASCADE",
+      },
+      userID_link: {
+        name: "userID_link",
+        columns: ["userID"],
+        referencedTable: "Users",
+        referencedColumns: ["xata_id"],
+        onDelete: "CASCADE",
+      },
+    },
+    primaryKey: [],
+    uniqueConstraints: {
+      _pgroll_new_TeamMembers_xata_id_key: {
+        name: "_pgroll_new_TeamMembers_xata_id_key",
+        columns: ["xata_id"],
+      },
+    },
+    columns: [
+      {
+        name: "teamId",
+        type: "link",
+        link: { table: "Teams" },
+        notNull: true,
+        unique: false,
+        defaultValue: null,
+        comment: '{"xata.link":"Teams"}',
+      },
+      {
+        name: "userID",
+        type: "link",
+        link: { table: "Users" },
+        notNull: true,
+        unique: false,
+        defaultValue: null,
+        comment: '{"xata.link":"Users"}',
       },
       {
         name: "xata_createdat",
@@ -419,6 +614,9 @@ export type ProjectRecord = Project & XataRecord;
 export type Tasks = InferredTypes["Tasks"];
 export type TasksRecord = Tasks & XataRecord;
 
+export type TeamMembers = InferredTypes["TeamMembers"];
+export type TeamMembersRecord = TeamMembers & XataRecord;
+
 export type Teams = InferredTypes["Teams"];
 export type TeamsRecord = Teams & XataRecord;
 
@@ -429,6 +627,7 @@ export type DatabaseSchema = {
   Comments: CommentsRecord;
   Project: ProjectRecord;
   Tasks: TasksRecord;
+  TeamMembers: TeamMembersRecord;
   Teams: TeamsRecord;
   Users: UsersRecord;
 };

@@ -1,0 +1,27 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_csaapdf2qe4a1a2lc3bg",
+    "operations": [
+      {
+        "add_column": {
+          "up": "''",
+          "table": "Tasks",
+          "column": {
+            "pk": false,
+            "name": "dueDate",
+            "type": "text",
+            "unique": false,
+            "comment": "",
+            "nullable": false
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_csaapdf2qe4a1a2lc3bg",
+  "parent": "mig_csaaom4jvfnl258s65e0",
+  "schema": "public",
+  "startedAt": "2024-10-20T07:09:42.656329Z"
+}

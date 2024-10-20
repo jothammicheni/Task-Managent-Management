@@ -1,0 +1,27 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_csaamsk2vvgao6unelug",
+    "operations": [
+      {
+        "add_column": {
+          "up": "0",
+          "table": "Tasks",
+          "column": {
+            "pk": false,
+            "name": "taskID",
+            "type": "int",
+            "unique": true,
+            "comment": "",
+            "nullable": false
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_csaamsk2vvgao6unelug",
+  "parent": "mig_csaak3v2qe4a1a2lc37g",
+  "schema": "public",
+  "startedAt": "2024-10-20T07:04:19.337099Z"
+}
