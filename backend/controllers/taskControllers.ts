@@ -5,28 +5,20 @@ import { generateToken } from '../utils/utils';
 const xata = getXataClient();
 export const createTask = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { description, status, dueDate, projectId, assignedToId } = req.body;
+        const {description, status, dueDate, projectId, assignedToId} = req.body;
 
-        if (!description || !status || !dueDate || !projectId || !assignedToId) {
-            res.status(400).json({ message: 'Description, status, due date, project ID, and assigned to ID are required.' });
-            return;
-        }
+        const project = await xata.db.Project.filter({ projectId }).getFirst();
+        const user = await xata.db.Users.filter({ xata_id: assignedToId }).getFirst();
 
-        console.log(`Checking project with ID: ${projectId}`);
-        const project = await xata.db.Project.filter({ xata_id: projectId }).getFirst();
-        if (!project) {
-            res.status(404).json({ message: 'Project not found.' });
+        if(!project || !user) {
+            res.status(404).json({ message: 'Project or User not found.' });
             return;
-        }
+        };
 
         const projectXataId = project['xata_id'];
+        const assignedToIdXataId = user['xata_id'];
 
-        console.log(`Checking user with ID: ${assignedToId}`);
-        const user = await xata.db.Users.filter({ xata_id: assignedToId }).getFirst();
-        if (!user) {
-            res.status(404).json({ message: 'User not found.' });
-            return;
-        }
+        console.log(`Checking project with ID: ${projectXataId}`);
 
         const taskID = Math.floor(Math.random() * 900000) + 100000;
 
@@ -35,7 +27,7 @@ export const createTask = async (req: Request, res: Response): Promise<void> => 
             status,
             dueDate,
             projectId: projectXataId,
-            assignedToID: assignedToId,
+            assignedToID: assignedToIdXataId,
             taskID,
         });
 
