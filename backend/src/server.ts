@@ -23,7 +23,7 @@ app.use('/api/users', userRoutes);
 app.use('/teams', teamRoutes);
 app.use('/api/project',projectRoutes);
 app.use('/api/tasks', taskRoutes);
-const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT || 3006;
 
 // Start the server
 app.listen(PORT, () => {
