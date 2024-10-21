@@ -5,7 +5,7 @@ import { protect,adminOnly } from '../middlewares/AuthMiddleware';
 const router = Router();
 
 // Define the POST route for user registration
-// router.post("/register",registerUser);
+router.post("/register",registerUser);
 
 // Define the POST route for user login
 router.post("/login", loginUser);

@@ -17,7 +17,7 @@ const sendResponse = (res: Response, status: number, message: string, data?: any
     res.status(status).json({ message, data });
 };
 
-const registerUser  = async (req: Request<{}, {}, UserRecord>, res: Response, next: jest.Mock<any, any, any>): Promise<void> => {
+const registerUser = async (req: Request<{}, {}, UserRecord>, res: Response): Promise<void> => {
     let { email, password, name, role } = req.body; // Use let to allow reassignment
 
     try {

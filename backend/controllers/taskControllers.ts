@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getXataClient } from './../src/xata';
 import { TasksRecord } from '../types/allTypes';
 import { generateToken } from '../utils/utils';
+import { Link } from '@xata.io/client';
 const xata = getXataClient();
 export const createTask = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -66,28 +67,53 @@ export const getTaskById = async (req: Request, res: Response): Promise<void> =>
 
 export const updateTask = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { id } = req.params;
+        const { id } = req.params; 
         const { description, status, dueDate, projectId, assignedToId } = req.body;
 
+        // Fetch the task using the taskID
         const tasks = await xata.db.Tasks.filter({ taskID: Number(id) }).getAll();
 
         if (tasks.length === 0) {
             res.status(404).json({ message: 'Task not found.' });
-        } else {
-            const task = tasks[0];
-            const updatedTask = {
-                ...task,
-                description: description || task.description,
-                status: status || task.status,
-                dueDate: dueDate || task.dueDate,
-                projectId: projectId || task.projectId,
-                assignedToId: assignedToId || task.assignedToID,
-            };
-
-            await xata.db.Tasks.update(task.xata_id, updatedTask);
-
-            res.status(200).json(task);
+            return;
         }
+
+        const task = tasks[0];
+
+        // Fetch and validate the project and user if provided
+        let projectXataId: Link<typeof task.projectId> = task.projectId;
+        let assignedToIdXataId: Link<typeof task.assignedToID> = task.assignedToID;
+
+        if (projectId) {
+            const project = await xata.db.Project.filter({ projectId }).getFirst();
+            if (!project) {
+                res.status(404).json({ message: 'Project not found.' });
+                return;
+            }
+            projectXataId = project['xata_id'] as unknown as Link<typeof task.projectId>;
+        }
+
+        if (assignedToId) {
+            const user = await xata.db.Users.filter({ xata_id: assignedToId }).getFirst();
+            if (!user) {
+                res.status(404).json({ message: 'User not found.' });
+                return;
+            }
+            assignedToIdXataId = user['xata_id'] as unknown as Link<typeof task.assignedToID>;
+        }
+
+        const updatedTask = {
+            ...task,
+            description: description || task.description,
+            status: status || task.status,
+            dueDate: dueDate || task.dueDate,
+            projectId: projectXataId,
+            assignedToID: assignedToIdXataId,
+        };
+
+        await xata.db.Tasks.update(task.xata_id, updatedTask);
+
+        res.status(200).json(updatedTask);
     } catch (error) {
         console.error('Error updating task:', error);
         res.status(500).json({ message: 'Internal server error' });
@@ -97,13 +123,17 @@ export const updateTask = async (req: Request, res: Response): Promise<void> => 
 export const deleteTask = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params;
-        const task = await xata.db.Tasks.delete(id);
+
+        const task = await xata.db.Tasks.filter({ taskID: Number(id) }).getFirst();
 
         if (!task) {
             res.status(404).json({ message: 'Task not found.' });
-        } else {
-            res.status(200).json({ message: 'Task deleted successfully.' });
+            return;
         }
+
+        await xata.db.Tasks.delete(task.xata_id);
+
+        res.status(200).json({ message: 'Task deleted successfully.' });
     } catch (error) {
         console.error('Error deleting task:', error);
         res.status(500).json({ message: 'Internal server error' });
@@ -112,55 +142,69 @@ export const deleteTask = async (req: Request, res: Response): Promise<void> => 
 
 export const assignTask = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { id } = req.params;
+        const { id } = req.params; // This is the taskID
         const { assignedToId } = req.body;
 
+        // Fetch the task using the taskID
         const tasks = await xata.db.Tasks.filter({ taskID: Number(id) }).getAll();
 
         if (tasks.length === 0) {
             res.status(404).json({ message: 'Task not found.' });
-        } else {
-            const task = tasks[0];
-            const updatedTask = {
-                ...task,
-                assignedToID: assignedToId,
-            };
-
-            await xata.db.Tasks.update(task.xata_id, updatedTask);
-
-            res.status(200).json(task);
+            return;
         }
+
+        const task = tasks[0];
+
+        // Validate the assignedToId
+        const user = await xata.db.Users.filter({ xata_id: assignedToId }).getFirst();
+        if (!user) {
+            res.status(404).json({ message: 'User not found.' });
+            return;
+        }
+
+        const assignedToIdXataId: Link<typeof task.assignedToID> = user['xata_id'] as unknown as Link<typeof task.assignedToID>;
+
+        const updatedTask = {
+            ...task,
+            assignedToID: assignedToIdXataId,
+        };
+
+        await xata.db.Tasks.update(task.xata_id, updatedTask);
+
+        res.status(200).json(updatedTask);
     } catch (error) {
         console.error('Error assigning task:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-
 export const updateTaskStatus = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { id } = req.params;
+        const { id } = req.params; // This is the taskID
         const { status } = req.body;
 
+        // Fetch the task using the taskID
         const tasks = await xata.db.Tasks.filter({ taskID: Number(id) }).getAll();
 
-        if (tasks.length === 0)
+        if (tasks.length === 0) {
             res.status(404).json({ message: 'Task not found.' });
-        else {
-            const task = tasks[0];
-            const updatedTask = {
-                ...task,
-                status: status,
-            };
-
-            await xata.db.Tasks.update(task.xata_id, updatedTask);
-
-            res.status(200).json(task);
+            return;
         }
+
+        const task = tasks[0];
+
+        const updatedTask = {
+            ...task,
+            status: status,
+        };
+
+        await xata.db.Tasks.update(task.xata_id, updatedTask);
+
+        res.status(200).json(updatedTask);
     } catch (error) {
         console.error('Error updating task status:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
-}
+};
 export const filterTasksByStatus = async (req: Request, res: Response): Promise<void> => {
     try {
         const { status } = req.params;
@@ -176,7 +220,7 @@ export const filterTasksByStatus = async (req: Request, res: Response): Promise<
         console.error('Error fetching tasks:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
-}
+};
 export const filterTasksByMember = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params;
@@ -211,9 +255,9 @@ export const filterTasksByStatusAndMember = async (req: Request, res: Response):
 }
 export const filterTasksByProject = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { id } = req.params;
+        const { project } = req.params;
 
-        const tasks = await xata.db.Tasks.filter({ projectId: id }).getAll();
+        const tasks = await xata.db.Tasks.filter({ projectId: project }).getAll();
 
         if (tasks.length === 0) {
             res.status(404).json({ message: 'Tasks not found.' });
@@ -224,60 +268,12 @@ export const filterTasksByProject = async (req: Request, res: Response): Promise
         console.error('Error fetching tasks:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
-}
+};
 export const filterTasksByProjectAndStatus = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id, status } = req.params;
 
         const tasks = await xata.db.Tasks.filter({ projectId: id, status }).getAll();
-
-        if (tasks.length === 0) {
-            res.status(404).json({ message: 'Tasks not found.' });
-        } else {
-            res.status(200).json(tasks);
-        }
-    } catch (error) {
-        console.error('Error fetching tasks:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-}
-export const filterTasksByProjectAndMember = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const { id, memberId } = req.params;
-
-        const tasks = await xata.db.Tasks.filter({ projectId: id, assignedToID: memberId }).getAll();
-
-        if (tasks.length === 0) {
-            res.status(404).json({ message: 'Tasks not found.' });
-        } else {
-            res.status(200).json(tasks);
-        }
-    } catch (error) {
-        console.error('Error fetching tasks:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-}
-export const filterTasksByProjectMemberAndStatus = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const { id, memberId, status } = req.params;
-
-        const tasks = await xata.db.Tasks.filter({ projectId: id, assignedToID: memberId, status }).getAll();
-
-        if (tasks.length === 0) {
-            res.status(404).json({ message: 'Tasks not found.' });
-        } else {
-            res.status(200).json(tasks);
-        }
-    } catch (error) {
-        console.error('Error fetching tasks:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-}
-export const filterTasksByProjectAndDueDate = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const { id, dueDate } = req.params;
-
-        const tasks = await xata.db.Tasks.filter({ projectId: id, dueDate }).getAll();
 
         if (tasks.length === 0) {
             res.status(404).json({ message: 'Tasks not found.' });
