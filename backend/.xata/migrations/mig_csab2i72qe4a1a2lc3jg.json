@@ -1,0 +1,27 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_csab2i72qe4a1a2lc3jg",
+    "operations": [
+      {
+        "add_column": {
+          "up": "''",
+          "table": "Tasks",
+          "column": {
+            "pk": false,
+            "name": "dueDate",
+            "type": "text",
+            "unique": false,
+            "comment": "",
+            "nullable": false
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_csab2i72qe4a1a2lc3jg",
+  "parent": "mig_csab29sjvfnl258s65l0",
+  "schema": "public",
+  "startedAt": "2024-10-20T07:29:12.313911Z"
+}
