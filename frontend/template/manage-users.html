@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/manage-users.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>USER MANAGEMENT</h2>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="tasks.html">Tasks</a></li>
+                <li><a href="manage-users.html" class="active">Manage Users</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <div class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </div>
+                <button id="logout" class="logout-btn">LOGOUT</button>
+            </div>
+
+            <div id="content">
+                <h3>Manage Users</h3>
+
+                <!-- Users List -->
+                <div id="users-list-container">
+                    <h4>All Users</h4>
+                    <div id="users-list"></div>
+                </div>
+
+                <!-- User Actions -->
+                <div id="user-actions">
+                    <h4>User Actions</h4>
+                    <button id="view-user-btn" class="action-btn">View User</button>
+                    <button id="delete-user-btn" class="action-btn">Delete User</button>
+                </div>
+
+                <!-- Single User Details -->
+                <div id="user-details-container">
+                    <h4>User Details</h4>
+                    <div id="user-details"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/backend/manage-users.js"></script>
+        <script src="./js/backend/logout.js"></script>
+    </div>
+</body>
+
+</html>
