@@ -6,6 +6,10 @@ import cookieParser from 'cookie-parser'; // Import cookie-parser
 import projectRoutes from "../routes/projectRoutes";
 
 
+
+export { app };  // Add this line to export 'app'
+
+
 dotenv.config();
 
 const app: Express = express();
