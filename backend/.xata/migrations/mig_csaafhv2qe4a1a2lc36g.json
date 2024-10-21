@@ -1,0 +1,18 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_csaafhv2qe4a1a2lc36g",
+    "operations": [
+      {
+        "drop_table": {
+          "name": "Tasks"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_csaafhv2qe4a1a2lc36g",
+  "parent": "mig_csaae7kjvfnl258s65cg",
+  "schema": "public",
+  "startedAt": "2024-10-20T06:48:39.651322Z"
+}

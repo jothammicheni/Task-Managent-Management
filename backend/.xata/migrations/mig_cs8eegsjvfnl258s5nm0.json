@@ -1,7 +1,7 @@
 {
   "done": true,
   "migration": {
-    "name": "mig_cs79piiaummr4an381e0",
+    "name": "mig_cs8eegsjvfnl258s5nm0",
     "operations": [
       {
         "sql": {
@@ -11,7 +11,7 @@
     ]
   },
   "migrationType": "pgroll",
-  "name": "mig_cs79piiaummr4an381e0",
+  "name": "mig_cs8eegsjvfnl258s5nm0",
   "schema": "public",
-  "startedAt": "2024-10-15T16:48:10.923005Z"
+  "startedAt": "2024-10-17T10:30:27.475708Z"
 }

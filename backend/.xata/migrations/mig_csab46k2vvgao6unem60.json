@@ -1,0 +1,27 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_csab46k2vvgao6unem60",
+    "operations": [
+      {
+        "add_column": {
+          "up": "0",
+          "table": "Comments",
+          "column": {
+            "pk": false,
+            "name": "commentID",
+            "type": "int",
+            "unique": true,
+            "comment": "",
+            "nullable": false
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_csab46k2vvgao6unem60",
+  "parent": "mig_csab3hf2qe4a1a2lc3kg",
+  "schema": "public",
+  "startedAt": "2024-10-20T07:32:43.598181Z"
+}

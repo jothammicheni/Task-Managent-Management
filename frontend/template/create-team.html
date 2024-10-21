@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Team</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/create.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>TASK MANAGEMENT</h2>
+            <ul>
+                <li><a href="Dashboard.html">Dashboard</a></li>
+                <li><a href="create-team.html" class="active">CREATE TEAM</a></li>
+                <li><a href="#">JOIN TEAM</a></li>
+                <li><a href="#">MANAGE TASKS</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <div class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </div>
+                <button id="logout" class="logout-btn">LOGOUT</button>
+            </div>
+
+            <div id="content">
+                <h3>Create a New Team</h3>
+
+                <div class="form-container">
+                    <form id="create-team-form">
+                        <label for="team-name">Team Name</label>
+                        <input type="text" id="team-name" name="team-name" placeholder="Enter team name" required>
+
+                        <label for="team-description">Team Description</label>
+                        <textarea id="team-description" name="team-description" placeholder="Enter team description" required></textarea>
+
+                        <label for="team-members">Invite Team Members</label>
+                        <div id="member-selection-container">
+                        </div>
+
+                        <button type="submit" class="submit-btn">Create Team</button>
+                    </form>
+
+                    <div id="message" class="message"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/create-team.js"></script>
+    </div>
+</body>
+
+</html>
