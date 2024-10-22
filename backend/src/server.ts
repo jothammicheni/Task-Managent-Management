@@ -5,7 +5,8 @@ import userRoutes from '../routes/userRoutes'; // Adjust the path to where your 
 import teamRoutes from '../routes/teamRoutes'; // Adjust the path to where your teamRoutes file is located
 import cookieParser from 'cookie-parser'; // Import cookie-parser
 import projectRoutes from "../routes/projectRoutes";
-import commentsRoutes from "../routes/commentsRoutes";
+import taskRoutes from "../routes/taskRoutes";
+
 
 export { app };
 
@@ -24,13 +25,11 @@ app.use(cookieParser());
 
 // Use the user routes with a specific prefix//
 app.use('/api/users', userRoutes);
-
 app.use('/teams', teamRoutes);
 app.use('/api/project',projectRoutes);
 
-app.use('/api/comments',commentsRoutes);
-
-const PORT = process.env.PORT || 3005;
+app.use('/api/tasks', taskRoutes);
+const PORT = process.env.PORT || 3002;
 
 // Start the server
 app.listen(PORT, () => {
