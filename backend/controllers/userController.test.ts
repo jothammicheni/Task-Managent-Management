@@ -17,6 +17,7 @@ describe("Auth Controller - Register User", () => {
       name: "Test User",
     };
     const hashedPassword = await bcrypt.hash(fakeUser.password, 10);
+
     (getXataClient as jest.Mock).mockImplementation(() => ({
       db: {
         users: {
@@ -28,7 +29,7 @@ describe("Auth Controller - Register User", () => {
           }),
         },
       },
-    }));
+    });
 
     const response = await request(app).post("/register").send(fakeUser);
 
@@ -43,7 +44,9 @@ describe("Auth Controller - Login User", () => {
   it("should log in a user successfully", async () => {
     const fakeUser = { email: "test@example.com", password: "password123" };
     const hashedPassword = await bcrypt.hash(fakeUser.password, 10);
+
     (getXataClient as jest.Mock).mockImplementation(() => ({
+
       db: {
         users: {
           filter: jest.fn().mockResolvedValueOnce({
@@ -52,7 +55,9 @@ describe("Auth Controller - Login User", () => {
           }),
         },
       },
+
     }));
+
     (bcrypt.compare as jest.Mock).mockResolvedValueOnce(true);
 
     const response = await request(app).post("/login").send(fakeUser);

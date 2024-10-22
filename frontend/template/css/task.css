@@ -1,0 +1,55 @@
+/* Team management styling */
+#content h3 {
+    margin-bottom: 20px;
+}
+
+.form-container {
+    margin-bottom: 30px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.submit-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+#teams-list-container, #team-members-container {
+    margin-top: 30px;
+}
+
+#teams-list, #team-members-list {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.action-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.action-btn:hover {
+    background-color: #0056b3;
+}

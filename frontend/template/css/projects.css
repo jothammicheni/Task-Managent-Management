@@ -1,0 +1,133 @@
+/* Container and layout */
+.container {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Navigation bar */
+.nav-bar {
+    display: flex;
+    gap: 20px;
+    margin: 20px;
+}
+
+.nav-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Filter section */
+.filter-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    max-width: 40%;
+}
+
+.filter-container button {
+    background-color: #17a2b8;
+    color: #fff;
+    border: none;
+    /* padding: 10px 10px; */
+    height: 37px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background-color: #138496;
+}
+
+/* Form styles */
+.form-container {
+    margin-bottom: 30px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.submit-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+/* Projects list */
+#projects-list-container h4 {
+    margin-bottom: 10px;
+}
+
+.project-item {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.project-item h4 {
+    margin: 0;
+}
+
+.project-item button {
+    background-color: #ffc107;
+    border: none;
+    padding: 8px 15px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.project-item button.view-btn {
+    background-color: #17a2b8;
+}
+
+.project-item button.update-btn {
+    background-color: #28a745;
+}
+
+.project-item button.delete-btn {
+    background-color: #dc3545;
+}
+
+.project-item button:hover {
+    opacity: 0.9;
+}
