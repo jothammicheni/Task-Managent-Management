@@ -1,7 +1,3 @@
-document.getElementById('logout').addEventListener('click', function() {
-    alert('Logging out...');
-});
-
 document.addEventListener('DOMContentLoaded', function () {
     const navBtns = document.querySelectorAll('.nav-btn');
     const projectContainer = document.getElementById('project-cards-container');

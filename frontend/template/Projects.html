@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Projects</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/projects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>TASK MANAGEMENT</h2>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="Projects.html" class="active">Projects</a></li>
+                <li><a href="tasks.html">Tasks</a></li>
+                <li><a href="manage-users.html">Manage Users</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <div class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </div>
+                <button id="logout" class="logout-btn">LOGOUT</button>
+            </div>
+
+            <div id="content">
+                <h3>Manage Projects</h3>
+
+                <!-- Filter Search Projects -->
+                <div class="filter-container">
+                    <input type="text" id="search-projects" class="filter-input" placeholder="Search projects by name">
+                    <button id="search-btn-p" class="search-btn">Search</button>
+                </div>
+
+                <!-- Create Project Form -->
+                <div class="form-container">
+                    <form id="create-project-form">
+                        <label for="project-name" class="form-label">Project Name</label>
+                        <input type="text" id="project-name" name="project-name" placeholder="Enter project name"
+                            required>
+                        <button type="submit" class="submit-btn">Create Project</button>
+                    </form>
+                </div>
+
+                <!-- Projects List -->
+                <div id="projects-list-container">
+                    <h4>All Projects</h4>
+                    <div id="projects-list"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <script src="./js/backend/projects.js"></script>
+        <script src="./js/backend/logout.js"></script>
+    </div>
+</body>
+
+</html>

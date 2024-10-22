@@ -6,37 +6,39 @@ const xata = getXataClient();
 
 
 export const createProject = async (req: Request, res: Response): Promise<void> => {
-    try {
+  try {
       const { name, teamId } = req.body;
-  
-     
+
+      // Validate input
       if (!name || !teamId) {
-       res.status(400).json({ message: 'Name and teamId are required.' });
+          res.status(400).json({ message: 'Name and teamId are required.' });
+          return;
       }
-  
+
       const projectId = Math.floor(Math.random() * 900000) + 100000;
-  
+
+      // Check if the team exists
       const teamExists = await xata.db.Teams.filter({ teamId }).getFirst();
       if (!teamExists) {
-        res.status(404).json({ message: 'Team not found.' });
-      } else {
-        console.log(teamExists);
-        const id = teamExists['xata_id'];
-  
-        
-        const project = await xata.db.Project.create({
-          name,
-          projectId, 
-          teamId: id, 
-        });
-  
-        res.status(201).json(project);
+          res.status(404).json({ message: 'Team not found.' });
+          return;
       }
-    } catch (error) {
+
+      // Team found, create the project
+      const id = teamExists['xata_id'];
+      const project = await xata.db.Project.create({
+          name,
+          projectId,
+          teamId: id,
+      });
+
+      // Send response with the created project
+      res.status(201).json(project);
+  } catch (error) {
       console.error('Error creating project:', error);
       res.status(500).json({ message: 'Internal server error' });
-    }
-  };  
+  }
+};
   
 
 export const getProjects = async (req: Request, res: Response): Promise<void>  => {

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Teams</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/task.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>TASK MANAGEMENT</h2>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="tasks.html" class="active">Tasks</a></li>
+                <li><a href="manage-users.html">Manage Users</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <div class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </div>
+                <button id="logout" class="logout-btn">LOGOUT</button>
+            </div>
+
+            <div id="content">
+                <h3>Manage Teams</h3>
+
+                <!-- Create Team Form -->
+                <div class="form-container">
+                    <form id="create-team-form">
+                        <label for="team-name" class="form-label">Team Name</label>
+                        <input type="text" id="team-name" name="team-name" placeholder="Enter team name" required>
+                        <button type="submit" class="submit-btn">Create Team</button>
+                    </form>
+                </div>
+
+                <!-- List of Teams -->
+                <div id="teams-list-container">
+                    <h4>Teams</h4>
+                    <div id="teams-list"></div>
+                </div>
+
+                <!-- Actions (Join, Leave, Update, Delete) -->
+                <div id="team-actions">
+                    <h4>Team Actions</h4>
+                    <button id="join-team-btn" class="action-btn">Join Team</button>
+                    <button id="leave-team-btn" class="action-btn">Leave Team</button>
+                    <button id="update-team-btn" class="action-btn">Update Team</button>
+                    <button id="delete-team-btn" class="action-btn">Delete Team</button>
+                </div>
+
+                <!-- Team Members List -->
+                <div id="team-members-container">
+                    <h4>Team Members</h4>
+                    <div id="team-members-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/backend/task.js"></script>
+        <script src="./js/backend/logout.js"></script>
+    </div>
+</body>
+
+</html>
