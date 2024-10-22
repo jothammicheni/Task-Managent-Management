@@ -69,7 +69,6 @@ export const updateTask = async (req: Request, res: Response): Promise<void> => 
     try {
         const { id } = req.params; 
         const { description, status, dueDate, projectId, assignedToId } = req.body;
-
         // Fetch the task using the taskID
         const tasks = await xata.db.Tasks.filter({ taskID: Number(id) }).getAll();
 
