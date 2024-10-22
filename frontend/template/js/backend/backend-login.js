@@ -58,6 +58,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         localStorage.setItem('userRole', data.user.role);
         alert('Login successful! Redirecting to dashboard...');
         window.location.href = 'dashboard.html';
+        localStorage.setItem('userId', data.user.email);
     } else {
         alert(`Error: ${data.message}`);
     }

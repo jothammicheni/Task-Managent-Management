@@ -4,7 +4,7 @@ import { protect, adminOnly } from '../middlewares/AuthMiddleware';
 
 const router = Router();
 
-router.post("/create", protect, createTeam);
+router.post("/create", protect, adminOnly ,createTeam);
 router.post("/join", protect, joinTeam);
 router.post("/leave", protect, leaveTeam);
 router.get("/", protect, getTeams);

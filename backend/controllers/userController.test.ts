@@ -29,7 +29,7 @@ describe("Auth Controller - Register User", () => {
           }),
         },
       },
-    });
+    }));
 
     const response = await request(app).post("/register").send(fakeUser);
 
