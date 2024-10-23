@@ -1,71 +1,67 @@
 # XATA-Advanced-Fullstack
 
-Welcome to the XATA_Advanced-Fullstack project! This README provides guidelines on how to contribute effectively to this project.
+Welcome to the Teams Management System! This README provides guidelines on how  the on how different endpoints and the components of these project works.
+The system is built on:
+
+1.**Express Typescript for backend**
+2.**Jest Library For Testing**
+3.**HTML for the front-end**
+4.**Xata database**
+
+These system allows user to create and manage their own teams. Also a team lead can create projects and invite members to participate on the projects. Different tasks are assigned to different users and tracks the progress of the tasks based on the *completion,pending or in-progress state*
 
 ## Table of Contents
-- [Getting Started](#getting-started)
-- [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
+- [User Authentication and Authorization](#user-authentication-and-authorization)
+- [Api Tests.](#api-tests)
+- [ user Interface and Results](#user-Interface-and-Results)
+- [ user Interface and Results](#user-Interface-and-Results)
+- [ Testing Results](#testing-tesults)
 
-## Getting Started
+## User Authentication and Authorization
+These project uses JWT-tokens to authenticate the users and also assign different roles to different users.These feature maximizes the security of the application
 
-To get started with contributing, follow these steps:
+Test demostration
 
-1. **Clone the repository:**
-    ```bash
-    git clone https://github.com/ridgebenson/XATA-Advanced-Fullstack.git
-    cd XATA-Advanced-Fullstack
-    ```
+1. **user login:**
+    On login the users are assigned a unique token which allows then to access and perform different activities on the system  for a given period of time
 
-2. **Install Dependencies:**
-    ```bash
-    pnpm install
-    ```
+   **login test**
+![Login api Test image](<backend/assets/user login.png>)
 
-## Contributing
+2. **User Authorization**
+    Different users are assigned different  privellages based on their role. For Example the Admin  can view users and delete them but the  user cannot perform these task.
+    **Assessing users as unAuthorized user**
+    These task is preserved for only admin users hence other users cannot perform these role
+![alt  unAuthorized user](<backend/assets/getting users as  UnAuthorized user.png>)
 
-### Main Branch
-The *main* branch contains the stable version of the project.
+     **Assesing users as a authorized users**
+     ![alt assesing users as an admin](<backend/assets/fetching users with Admin role.png>)
 
-### Feature Branches
-1. **Pull the latest changes from main:**
-    ```bash
-    git pull origin main
-    ```
+## Api Tests
+ Used PostMan and Thunder Client  as the *Api End-point* testing tools.These was usefull to ensure that all the apis sent to the Front-end work as required.
+ 
+ Here are some api Tests.
+ For the api tests to pass the user must be Logged in first
+  **Test for getting projects**
+   ![alt text](<backend/assets/All projects.png>)
+   **Test for Registering users**
+    ![alt text](<backend/assets/register user.png>)
+   **Test for getting teams**    
+    ![alt text](<backend/assets/get teams.png>)
 
-2. **Create a new branch for your feature or bugfix from main:**
-    - Developer A:
-        ```bash
-        git checkout -b feature-branch-A
-        ```
-    - Developer B:
-        ```bash
-        git checkout -b feature-branch-B
-        ```
 
-3. **Make your changes and commit them:**
-    Before committing changes, ensure you test functionality in your code.
-    ```bash
-    git add .
-    git commit -m "Add your commit message"
-    ```
 
-4. **Push your changes while in your `feature-branch`:**
-    - Developer A:
-        ```sh
-        git push origin feature-branch-A
-        ```
-    - Developer B:
-        ```sh
-        git push origin feature-branch-B
-        ```
 
-5. **Create a Pull Request:**
-    1. Go to the repository on GitHub.
-    2. Click on the *Pull requests* tab.
-    3. Click the *New pull request* button.
-    4. Select your *feature branch* and compare it with the *main* branch.
-    5. Fill out the PR template with details about your changes and click *Create pull request*.
+
+### user Interface and Results
+
+   1. **Users Display on Admin dashboard:**
+  
+
+
+### Testing Results
+  .
+   
 
 ## Acknowledgements
 
