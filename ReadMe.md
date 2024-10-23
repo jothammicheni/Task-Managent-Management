@@ -3,10 +3,10 @@
 Welcome to the Teams Management System! This README provides guidelines on how  the on how different endpoints and the components of these project works.
 The system is built on:
 
-1.**Express Typescript for backend**
-2.**Jest Library For Testing**
-3.**HTML for the front-end**
-4.**Xata database**
+- 1.**Express Typescript for backend**
+- 2.**Jest Library For Testing**
+- 3.**HTML for the front-end**
+- 4.**Xata database**
 
 These system allows user to create and manage their own teams. Also a team lead can create projects and invite members to participate on the projects. Different tasks are assigned to different users and tracks the progress of the tasks based on the *completion,pending or in-progress state*
 
