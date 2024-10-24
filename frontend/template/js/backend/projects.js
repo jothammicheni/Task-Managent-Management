@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 projectItem.innerHTML = `
                     <h4>${project.name}</h4>
-                    <button class="view-btn" data-id="${project.xata_id}">View</button>
+                    <button class="view-btn" data-id="${project.projectId}">View</button>
                     <button class="update-btn" data-id="${project.xata_id}">Update</button>
                     <button class="delete-btn" data-id="${project.xata_id}">Delete</button>
                 `;
@@ -104,16 +104,9 @@ document.addEventListener('DOMContentLoaded', function () {
     async function handleViewProject(e) {
         const projectId = e.target.getAttribute('data-id');
 
-        try {
-            const response = await fetch(`http://localhost:3005/api/project/${projectId}`);
-            const project = await response.json();
-
-            alert(`Project Name: ${project.name}\nDescription: ${project.description}`);
-        } catch (error) {
-            console.error('Error fetching project details:', error);
-        }
+        // Redirect to a new HTML page, passing the projectId as a query parameter
+        window.location.href = `viewProject.html?projectId=${projectId}`;
     }
-
     // Handle update project
     async function handleUpdateProject(e) {
         const projectId = e.target.getAttribute('data-id');

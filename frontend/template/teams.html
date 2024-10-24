@@ -16,8 +16,8 @@
             <h2>TEAM MANAGEMENT</h2>
             <ul>
                 <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="teams.html" class="active">Teams</a></li>
-                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="teams.html">Teams</a></li>
+                <li><a href="projects.html">Projects</a></li>
                 <li><a href="manage-users.html">Manage Users</a></li>
             </ul>
         </div>
@@ -34,52 +34,49 @@
             <div id="content">
                 <h3>Manage Teams</h3>
 
-                <!-- Create Team Form -->
-                <div class="form-container">
-                    <form id="create-team-form">
-                        <label for="team-name" class="form-label">Team Name</label>
-                        <input type="text" id="team-name" name="team-name" placeholder="Enter team name" required>
-                        <br>
-                
-                        <label for="team-description" class="form-label">Team Description</label>
-                        <input type="text" id="team-description" name="team-description" placeholder="Enter team description" required>
-                        <br>
-                
-                        <label for="add-members" class="form-label">Add Members</label>
-                        <select id="add-members" name="add-members" class="member-select" multiple>
-                            <option value="member1">John Doe</option>
-                            <option value="member2">Jane Smith</option>
-                            <option value="member3">Sam Johnson</option>
-                            <option value="member4">Alice Williams</option>
-                            <option value="member5">David Brown</option>
-                        </select>
-                        <br>
-                
-                        <button type="submit" class="submit-btn">Create Team</button>
-                    </form>
+                <div class="sections">
+                    <div class="section">
+                        <h4>Teams you are part of</h4>
+                        <div id="user-teams">
+                            <!-- Teams will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Create Team Form -->
+                    <div class="form-container">
+                        <form id="create-team-form">
+                            <label for="team-name" class="form-label">Team Name</label>
+                            <input type="text" id="team-name" name="team-name" placeholder="Enter team name" required>
+                            <br>
+
+                            <label for="team-description" class="form-label">Team Description</label>
+                            <input type="text" id="team-description" name="team-description"
+                                placeholder="Enter team description" required>
+                            <br>
+
+                            <label for="add-members" class="form-label">Add Members</label>
+                            <select id="add-members" name="add-members" class="member-select" multiple>
+                                <!-- Options will be populated here -->
+                            </select>
+                            <br>
+
+                            <button type="submit" class="submit-btn">Create Team</button>
+                        </form>
+                    </div>
+
                 </div>
-                
 
                 <!-- List of Teams -->
                 <div id="teams-list-container">
-                    <h4>Teams</h4>
-                    <div id="teams-list"></div>
+                    <h4>Teams you can join</h4>
+                    <div id="teams-list">
+                        <!-- Teams will be populated here -->
+                    </div>
                 </div>
 
-                <!-- Actions (Join, Leave, Update, Delete) -->
-                <div id="team-actions">
-                    <h4>Team Actions</h4>
-                    <button id="join-team-btn" class="action-btn">Join Team</button>
-                    <button id="leave-team-btn" class="action-btn">Leave Team</button>
-                    <button id="update-team-btn" class="action-btn">Update Team</button>
-                    <button id="delete-team-btn" class="action-btn">Delete Team</button>
-                </div>
+                <!-- Error Message Container -->
+                <div id="error-message" style="color: red;"></div>
 
-                <!-- Team Members List -->
-                <div id="team-members-container">
-                    <h4>Team Members</h4>
-                    <div id="team-members-list"></div>
-                </div>
             </div>
         </div>
 

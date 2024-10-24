@@ -92,3 +92,26 @@ export const deleteProject = async (req: Request, res: Response): Promise<void> 
  res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+
+export const getProjectsByTeamId = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { teamId } = req.params;
+
+    const teamXataId = await xata.db.Teams.filter({ teamId: parseInt(teamId, 10) }).getFirst();
+
+    if (!teamXataId) {
+      res.status(404).json({ message: 'Team not found' });
+      return;
+    }
+    console.log(`Fetching projects for team with xata_id: ${teamXataId['xata_id']}`);
+
+    const projects = await xata.db.Project.filter({ teamId: teamXataId['xata_id'] }).getAll();
+
+    res.status(200).json(projects);
+
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};

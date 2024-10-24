@@ -5,6 +5,7 @@ import {
   getProjectById,
   updateProject,
   deleteProject,
+  getProjectsByTeamId,
 } from '../controllers/projectController';
 
 const router = express.Router();
@@ -23,5 +24,8 @@ router.put('/update/:id', updateProject);
 
 // Route to delete a project by ID
 router.delete('/delete/:id', deleteProject);
+
+// Route to get all projects by team ID
+router.get('/team/:teamId', getProjectsByTeamId);
 
 export default router;

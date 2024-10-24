@@ -4,16 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Projects</title>
+    <title>Team Details</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/projects.css">
+    <link rel="stylesheet" href="./css/teams.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 
 <body>
     <div class="container">
         <div class="sidebar">
-            <h2>TASK MANAGEMENT</h2>
+            <h2>TEAM MANAGEMENT</h2>
             <ul>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="teams.html">Teams</a></li>
@@ -31,37 +33,44 @@
                 <button id="logout" class="logout-btn">LOGOUT</button>
             </div>
 
-            <div id="content">
-                <h3>Manage Projects</h3>
-
-                <!-- Filter Search Projects -->
-                <div class="filter-container">
-                    <input type="text" id="search-projects" class="filter-input" placeholder="Search projects by name">
-                    <button id="search-btn-p" class="search-btn">Search</button>
-                </div>
-
-                <!-- Create Project Form -->
-                <div class="form-container">
-                    <form id="create-project-form">
-                        <label for="project-name" class="form-label">Project Name</label>
-                        <input type="text" id="project-name" name="project-name" placeholder="Enter project name"
-                            required>
-                        <button type="submit" class="submit-btn">Create Project</button>
-                    </form>
-                </div>
-
-                <!-- Projects List -->
-                <div id="projects-list-container">
-                    <h4>All Projects</h4>
-                    <div id="projects-list"></div>
-                </div>
-
+            <div class="header2">
+                <h1 id="team-name">Team Name</h1>
+                <p id="team-description">Team Description</p>
             </div>
-        </div>
 
-        <script src="./js/backend/projects.js"></script>
-        <script src="./js/backend/logout.js"></script>
+            <div class="teamsProjectsContainer">
+                <div class="teamMembersSection">
+                    <h4>Team Members</h4>
+                    <div id="team-members">
+                        <!-- Team members will be populated here -->
+                    </div>
+                </div>
+
+                <div id="projects-list-container">
+                    <h4> All Projects</h4>
+                    <div id="projects-list"></div>
+                    <!-- Projects will be populated here -->
+                    </div>
+                </div>
+                <div class="otherActions">
+                    <button id="leave-team-btn" type="button">Leave Team</button>
+                </div>
+            </div>
+
+            <!-- <div >
+                <h4>All Projects</h4>
+                <div id="projects-list"></div>
+            </div> -->
+
+            <!-- <h3>Projects</h3>
+            <ul id="projects-list"></ul> -->
+            
+        </div>
+        
     </div>
+
+
+    <script src="./js/backend/team-details.js"></script>
 </body>
 
 </html>

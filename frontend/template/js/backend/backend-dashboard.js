@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const users = await userResponse.json();
 
         const userId = localStorage.getItem('userId');
-        // const userRole = localStorage.getItem('userRole');
+        const userRole = localStorage.getItem('userRole');
 
         const currentUserName = users.find(user => user.email === userId);
 
@@ -24,13 +24,57 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById('user-name').textContent = 'User not found';
         }
 
-        const projectsData = await projectsResponse.json();
+        // Fetch total projects and update the UI
 
-        // Get the length of the projects array
-        const totalProjects = projectsData.length;
+        async function fetchTotalProjects() {
+            if (userRole === 'admin') {
+                try {
+                    
+                    const response = await fetch('http://localhost:3005/api/project/getAll', {
+                        headers: {
+                            'Authorizaton': `Bearer ${localStorage.getItem('token')}`,
+                            'Content-Type': 'application/json'
+                        }
+                        });
 
-        // Update the Total Projects card with the correct number
-        document.getElementById('total-projects').textContent = totalProjects;
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch total projects');
+                    }
+
+                    const totalProjects = await response.json();
+
+                    const totalProjectsCount = totalProjects.length;
+                    document.getElementById('total-projects').textContent = totalProjectsCount;
+
+                } catch (error) {
+                    console.error('Error fetching total projects:', error);
+                    document.getElementById('total-projects').textContent = 'Error';
+                }   
+                } else{
+                    try {
+                        const response = await fetch(`http://localhost:3005/api/projects?userId=${userId}`, {
+                            headers: {
+                                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                                'Content-Type': 'application/json'
+                            }
+                        });
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch user projects');
+                        }
+
+                        const userProjects = await response.json();
+                        const userProjectsCount = userProjects.length;
+                        document.getElementById('total-projects').textContent = userProjectsCount;
+
+                    } catch (error) {
+                        console.error('Error fetching user projects:', error);
+                        document.getElementById('total-projects').textContent = 'Error';
+                    }
+                }
+        }
+
+        fetchTotalProjects();
+
         // Fetch total teams and update the UI
         async function fetchTotalTeams() {
             try {
@@ -58,6 +102,59 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Fetch all pending tasks for the user
 
 
+        async function fetchPendingTasks() {
+            try {
+                const response = await fetch(`http://localhost:3005/api/tasks/filter/status/pending`, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch pending tasks');
+                }
+
+                const pendingTasks = await response.json();
+
+                const pendingTasksCount = pendingTasks.length;
+
+                document.getElementById('pending-tasks').textContent = pendingTasksCount;
+            }
+            catch (error) {
+                console.error('Error fetching pending tasks:', error);
+                document.getElementById('pending-tasks').textContent = 'Error';
+            }
+        }
+
+        fetchPendingTasks();
+
+        async function fetchCompletedTasks() {
+            try {
+                const response = await fetch(`http://localhost:3005/api/tasks/filter/status/completed`, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Content-Type': 'application/json'
+                    }
+
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch completed tasks');
+                }
+
+                const completedTasks = await response.json();
+
+                const completedTasksCount = completedTasks.length;
+
+                document.getElementById('completed-tasks').textContent = completedTasksCount;
+            } catch (error) {
+                console.error('Error fetching completed tasks:', error);
+                document.getElementById('completed-tasks').textContent = 'Error';
+            }
+        }
+
+        fetchCompletedTasks();
 
     } catch (error) {
         console.error('Error fetching projects:', error);
