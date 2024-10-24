@@ -3,10 +3,6 @@
     margin-bottom: 20px;
 }
 
-.form-container {
-    margin-bottom: 30px;
-}
-
 input[type="text"] {
     width: 100%;
     padding: 10px;
@@ -56,6 +52,7 @@ input[type="text"] {
 
 .form-container {
     max-width: 500px;
+    width: 100%;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -117,3 +114,158 @@ select:focus {
 .submit-btn:hover {
     background-color: #0056b3;
 }
+
+/* Style for the tContainer div */
+#teams-list-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Style for the teams-list div */
+#teams-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Style for individual team cards */
+.team-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.team-card h4 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.team-card p {
+    margin: 0 0 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.team-card .view-team-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.join-team-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.join-team-btn:hover {
+    background-color: #0056b3;
+}
+
+.team-card .view-team-btn:hover {
+    background-color: #0056b3;
+}
+
+#leave-team-btn{
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* margin-left: 500px; */
+}
+
+#leave-team-btn:hover {
+    background-color: #c82333;
+}
+
+.sections{
+    /* border: 1px solid blue; */
+    display: flex;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    flex-direction: row;
+}
+
+/* .section{
+    border: 1px solid red;
+    width: 50%;
+} */
+
+.section h4{
+    text-align: center;
+    padding: 10px;
+}
+
+.header2{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    /* border: 1px solid black; */
+}
+
+.teamsProjectsContainer{
+    display: flex;
+    justify-content: space-evenly;
+    /* align-items: center; */
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+}
+
+.otherActions{
+    display: flex;
+    justify-content: flex-end;
+    /* align-items: center; */
+    /* border: 1px solid green; */
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.teamMembersSection{
+    display: flex;
+    justify-content: flex-start;
+    /* align-items: center; */
+    /* border: 1px solid blue; */
+    flex-direction: column;
+    padding: 10px;
+    
+}
+
+.teamMembersSection h4{
+    text-align: center;
+    padding: 10px;
+    margin-top: 0px;
+}
+
+#team-members{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* border: 1px solid red; */
+}
+
+/* .main-content{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+} */
