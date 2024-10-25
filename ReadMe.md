@@ -57,12 +57,11 @@ Test demostration
 
    1. **Users Display on Admin dashboard:**
      ![alt text](<backend/assets/admin dashboard.png>)
-
-    2. **Team Management Page:**
-![alt text](<backend/assets/get teams.png>)
+   2. **Team Management Page:**
+     ![alt text](<backend/assets/get teams.png>)
 
    3. **User management page:**
-   ![alt text](<backend/assets/manage users.png>)
+     ![alt text](<backend/assets/manage users.png>)
 
 ## Acknowledgements
 
